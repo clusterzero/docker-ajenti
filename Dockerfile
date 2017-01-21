@@ -18,7 +18,7 @@ RUN apt-get update
 RUN rm /etc/apt/apt.conf.d/docker-gzip-indexes
 RUN wget -O- https://raw.github.com/ajenti/ajenti/1.x/scripts/install-ubuntu.sh | sh
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq ajenti-v ajenti-v-nginx ajenti-php-fpm ajenti-v-php7.0-fpm ajenti-v-mail ajenti-v-nodejs
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq ajenti-v ajenti-v-nginx ajenti-v-php7.0 ajenti-v-mail ajenti-v-nodejs
 
 COPY setup /sbin/
 
