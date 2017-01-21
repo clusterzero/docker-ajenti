@@ -10,17 +10,15 @@ RUN find /etc/systemd/system \
          -not -name '*systemd-tmpfiles*' \
          -not -name '*systemd-user-sessions*' \
          -exec rm \{} \;
-RUN apt-get update && apt-get install -y curl wget
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y curl wget unzip
 RUN echo "root:admin" | chpasswd
 
 #Ajenti
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq  wget
 RUN rm /etc/apt/apt.conf.d/docker-gzip-indexes
 RUN wget -O- https://raw.github.com/ajenti/ajenti/1.x/scripts/install-ubuntu.sh | sh
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq ajenti-v 
-
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq ajenti-v ajenti-v-nginx ajenti-php-fpm ajenti-v-php7.0-fpm ajenti-v-mail ajenti-v-nodejs
 
 COPY setup /sbin/
 
